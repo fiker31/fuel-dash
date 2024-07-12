@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="FuelDBModelStoreContainer" CdmEntityContainer="FuelDBEntities">
+    <EntitySetMapping Name="TXNs">
+      <EntityTypeMapping TypeName="FuelDBModel.TXN">
+        <MappingFragment StoreEntitySet="TXN">
+          <ScalarProperty Name="Id" ColumnName="Id" />
+          <ScalarProperty Name="TillCode" ColumnName="TillCode" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="PlateNo" ColumnName="PlateNo" />
+          <ScalarProperty Name="TransactionId" ColumnName="TransactionId" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="OperatorName" ColumnName="OperatorName" />
+          <ScalarProperty Name="Type" ColumnName="Type" />
+          <ScalarProperty Name="TransactionEndFuel" ColumnName="TransactionEndFuel" />
+          <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="AttendantsLists">
+      <EntityTypeMapping TypeName="FuelDBModel.AttendantsList">
+        <MappingFragment StoreEntitySet="AttendantsList">
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="Shortcode" ColumnName="Shortcode" />
+          <ScalarProperty Name="EncryptionKey" ColumnName="EncryptionKey" />
+          <ScalarProperty Name="AttendantName" ColumnName="AttendantName" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FuelPrices">
+      <EntityTypeMapping TypeName="FuelDBModel.FuelPrice">
+        <MappingFragment StoreEntitySet="FuelPrices">
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+          <ScalarProperty Name="EndDate" ColumnName="EndDate" />
+          <ScalarProperty Name="StartDate" ColumnName="StartDate" />
+          <ScalarProperty Name="BENZEL" ColumnName="BENZEL" />
+          <ScalarProperty Name="DIESEL" ColumnName="DIESEL" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FuleOTPs">
+      <EntityTypeMapping TypeName="FuelDBModel.FuleOTP">
+        <MappingFragment StoreEntitySet="FuleOTP">
+          <ScalarProperty Name="FuleExpTime" ColumnName="FuleExpTime" />
+          <ScalarProperty Name="FuOTP" ColumnName="FuOTP" />
+          <ScalarProperty Name="FulePhone" ColumnName="FulePhone" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MerchantInfoes">
+      <EntityTypeMapping TypeName="FuelDBModel.MerchantInfo">
+        <MappingFragment StoreEntitySet="MerchantInfo">
+          <ScalarProperty Name="UpdateUser" ColumnName="UpdateUser" />
+          <ScalarProperty Name="InsertUser" ColumnName="InsertUser" />
+          <ScalarProperty Name="UpdateDate" ColumnName="UpdateDate" />
+          <ScalarProperty Name="InsertDate" ColumnName="InsertDate" />
+          <ScalarProperty Name="Status" ColumnName="Status" />
+          <ScalarProperty Name="KYC" ColumnName="KYC" />
+          <ScalarProperty Name="Password" ColumnName="Password" />
+          <ScalarProperty Name="Phone" ColumnName="Phone" />
+          <ScalarProperty Name="Shortcode" ColumnName="Shortcode" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

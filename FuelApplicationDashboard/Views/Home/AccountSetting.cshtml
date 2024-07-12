@@ -1,0 +1,388 @@
+﻿@model FuelApplicationDashboard.Models.changepinModel
+@using FuelApplicationDashboard.Controllers
+<link href=" ~/Styling/assets/plugins/custom/datatables/datatables.bundle.css" rel="stylesheet" type="text/css" />
+<!--end::Page Vendor Stylesheets-->
+<!--begin::Global Stylesheets Bundle(used by all pages)-->
+<link href=" ~/Styling/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+<link href=" ~/Styling/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+<!--begin::Content-->
+<div class="content d-flex flex-column flex-column-fluid" id="kt_content">
+    <!--begin::Toolbar-->
+    <div class="toolbar" id="kt_toolbar">
+        <!--begin::Container-->
+        <div id="kt_toolbar_container" class="container-fluid d-flex flex-stack">
+            <!--begin::Page title-->
+            <div data-kt-swapper="true" data-kt-swapper-mode="prepend" data-kt-swapper-parent="{default: '#kt_content_container', 'lg': '#kt_toolbar_container'}" class="page-title d-flex align-items-center flex-wrap me-3 mb-5 mb-lg-0">
+                <!--begin::Title-->
+                <h1 class="d-flex text-dark fw-bolder fs-3 align-items-center my-1">Setting</h1>
+                <!--end::Title-->
+                <!--begin::Separator-->
+                <span class="h-20px border-gray-300 border-start mx-4"></span>
+                <!--end::Separator-->
+                <!--begin::Breadcrumb-->
+                <ul class="breadcrumb breadcrumb-separatorless fw-bold fs-7 my-1">
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item text-muted">
+                        <a href="Home" class="text-muted text-hover-primary">Home</a>
+                    </li>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item">
+                        <span class="bullet bg-gray-300 w-5px h-2px"></span>
+                    </li>
+                    <!--end::Item-->
+                    <!--begin::Item-->
+                    <li class="breadcrumb-item text-dark">Account Settings</li>
+                    <!--end::Item-->
+                </ul>
+                <!--end::Breadcrumb-->
+            </div>
+            <!--end::Page title-->
+            <!--begin::Actions-->
+            <div class="d-flex align-items-center gap-2 gap-lg-3"></div>
+            <!--end::Actions-->
+        </div>
+        <!--end::Container-->
+    </div>
+    <!--end::Toolbar-->
+    <div class="post d-flex flex-column-fluid" id="kt_post">
+        <!--begin::Container-->
+        <div id="kt_content_container" class="container-xxl">
+            <!--begin::Sign-in Method-->
+            <div class="card mb-5 mb-xl-10">
+                <!--begin::Card header-->
+                <div class="card-header border-0 cursor-pointer" role="button" data-bs-toggle="collapse" data-bs-target="#kt_account_signin_method">
+                    <div class="card-title m-0">
+                        <h3 class="fw-bolder m-0">General</h3>
+                    </div>
+                </div>
+                <!--end::Card header-->
+                <!--begin::Content-->
+                <div id="kt_account_settings_signin_method" class="collapse show">
+                    <!--begin::Card body-->
+                    <div class="card-body border-top p-9">
+                        <!--begin::Email Address-->
+                        <div class="d-flex flex-wrap align-items-center">
+                            <!--begin::Label-->
+                            <div id="kt_signin_email" style="display:none">
+                                <div class="fs-6 fw-bolder mb-1">Email Address</div>
+                                <div class="fw-bold text-gray-600">support@keenthemes.com</div>
+                            </div>
+                            <!--end::Label-->
+                            <!--begin::Edit-->
+                            <div id="kt_signin_email_edit" class="flex-row-fluid d-none" style="display:none">
+                                <!--begin::Form-->
+                                <form id="kt_signin_change_email" class="form" novalidate="novalidate" style="display:none">
+                                    <div class="row mb-6">
+                                        <div class="col-lg-6 mb-4 mb-lg-0">
+                                            <div class="fv-row mb-0">
+                                                <label for="emailaddress" class="form-label fs-6 fw-bolder mb-3">Enter New Email Address</label>
+                                                <input type="email" class="form-control form-control-lg form-control-solid" id="emailaddress" placeholder="Email Address" name="emailaddress" value="support@keenthemes.com" />
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6">
+                                            <div class="fv-row mb-0">
+                                                <label for="confirmemailpassword" class="form-label fs-6 fw-bolder mb-3">Confirm Password</label>
+                                                <input type="password" class="form-control form-control-lg form-control-solid" name="confirmemailpassword" id="confirmemailpassword" />
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex">
+                                        <button id="kt_signin_submit" type="button" class="btn btn-primary me-2 px-6">Update Email</button>
+                                        <button id="kt_signin_cancel" type="button" class="btn btn-color-gray-400 btn-active-light-primary px-6">Cancel</button>
+                                    </div>
+                                </form>
+                                <!--end::Form-->
+                            </div>
+                            <!--end::Edit-->
+                            <!--begin::Action-->
+                            <div id="kt_signin_email_button" class="ms-auto" style="display:none">
+                                <button class="btn btn-light btn-active-light-primary">Change Email</button>
+                            </div>
+                            <!--end::Action-->
+                        </div>
+                        <!--end::Email Address-->
+                        <!--begin::Separator-->
+                        <div class="separator separator-dashed my-6"></div>
+
+                        <!--end::Separator-->
+                        <!--begin::Password-->
+                        <div class="d-flex flex-wrap align-items-center mb-10">
+                            <!--begin::Label-->
+                            <!--end::Label-->
+                            <!--begin::Edit-->
+                            <div id="" class="flex-row-fluid ">
+                                @using (Html.BeginForm())
+                                {
+                                    @Html.AntiForgeryToken()
+
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    <!--begin::Form-->
+                                    <form id="kt_signin_change_password" class="form" novalidate="novalidate">
+                                        <div class="row mb-1">
+                                            <div class="col-lg-4">
+                                                <div class="fv-row mb-0">
+                                                    <label for="currentpassword" class="form-label fs-6 fw-bolder mb-3">Current Password</label>
+                                                    @Html.EditorFor(model => model.currentpin, new { htmlAttributes = new { type = "password", @class = "form-control form-control-lg form-control-solid", @style = "min-width:290px" } })
+                                                    @Html.ValidationMessageFor(model => model.currentpin, "", new { @class = "text-danger", @style = "font-size:12px" })
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="fv-row mb-0">
+                                                    <label for="newpassword" class="form-label fs-6 fw-bolder mb-3">New Password</label>
+                                                    @Html.EditorFor(model => model.newpin, new { htmlAttributes = new { type = "password", @class = "form-control form-control-lg form-control-solid", @style = "min-width:290px" } })
+                                                    @Html.ValidationMessageFor(model => model.newpin, "", new { @class = "text-danger", @style = "font-size:12px" })
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-4">
+                                                <div class="fv-row mb-0">
+                                                    <label for="confirmpassword" class="form-label fs-6 fw-bolder mb-3">Confirm New Password</label>
+                                                    @Html.EditorFor(model => model.newpinconfirm, new { htmlAttributes = new { type = "password", @class = "form-control form-control-lg form-control-solid", @style = "min-width:290px" } })
+                                                    @Html.ValidationMessageFor(model => model.newpinconfirm, "", new { @class = "text-danger", @style = "font-size:12px" })
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <style>
+                                            #kt_password_submit:hover {
+                                                background-color: #990099 !important;
+                                            }
+
+                                            #kt_password_submit:focus {
+                                                background-color: #990099 !important;
+                                            }
+                                        </style>
+                                        <div class="form-text mb-5">Password must be at least 6 characters and digits symbols</div>
+                                        <div class="d-flex">
+                                            <button id="kt_password_submit" type="submit" class="btn btn-info me-2 px-6" style="background-color:#990099">Update Password</button>
+                                            <button id="kt_password_cancel" type="button" class="btn btn-color-gray-400 btn-active-light-primary px-6">Cancel</button>
+                                        </div>
+                                    </form>
+                                }
+                                <!--end::Form-->
+                            </div>
+                            <!--end::Edit-->
+
+                        </div>
+
+                        <!--end::Password-->
+                        <!--begin::Notice-->
+                        <div class="notice d-flex bg-light-info rounded border-primary border border-dashed p-6">
+                            <!--begin::Icon-->
+                            <!--begin::Svg Icon | path: icons/duotune/general/gen048.svg-->
+                            <span class="svg-icon svg-icon-2tx svg-icon-primary me-4">
+                                <svg xmlns="" width="24" height="24" viewBox="0 0 24 24" fill="#990099">
+                                    <path opacity="0.3" d="M20.5543 4.37824L12.1798 2.02473C12.0626 1.99176 11.9376 1.99176 11.8203 2.02473L3.44572 4.37824C3.18118 4.45258 3 4.6807 3 4.93945V13.569C3 14.6914 3.48509 15.8404 4.4417 16.984C5.17231 17.8575 6.18314 18.7345 7.446 19.5909C9.56752 21.0295 11.6566 21.912 11.7445 21.9488C11.8258 21.9829 11.9129 22 12.0001 22C12.0872 22 12.1744 21.983 12.2557 21.9488C12.3435 21.912 14.4326 21.0295 16.5541 19.5909C17.8169 18.7345 18.8277 17.8575 19.5584 16.984C20.515 15.8404 21 14.6914 21 13.569V4.93945C21 4.6807 20.8189 4.45258 20.5543 4.37824Z" fill="#990099" />
+                                    <path d="M10.5606 11.3042L9.57283 10.3018C9.28174 10.0065 8.80522 10.0065 8.51412 10.3018C8.22897 10.5912 8.22897 11.0559 8.51412 11.3452L10.4182 13.2773C10.8099 13.6747 11.451 13.6747 11.8427 13.2773L15.4859 9.58051C15.771 9.29117 15.771 8.82648 15.4859 8.53714C15.1948 8.24176 14.7183 8.24176 14.4272 8.53714L11.7002 11.3042C11.3869 11.6221 10.874 11.6221 10.5606 11.3042Z" fill="#990099" />
+                                </svg>
+                            </span>
+                            <!--end::Svg Icon-->
+                            <!--end::Icon-->
+                            <!--begin::Wrapper-->
+                            <div class="d-flex flex-stack flex-grow-1 flex-wrap flex-md-nowrap">
+                                <!--begin::Content-->
+                                <div class="mb-3 mb-md-0 fw-bold">
+                                    <h4 class="text-gray-900 fw-bolder">Secure Your Account</h4>
+                                    <div class="fs-6 text-gray-700 pe-7">Change your password regularly to secure your account from unauthorized accesss. Please use at lease 6 characters and digits combinations.</div>
+                                </div>
+                                <!--end::Content-->
+                            </div>
+                            <!--end::Wrapper-->
+                        </div>
+                        <!--end::Notice-->
+                    </div>
+                    <!--end::Card body-->
+                </div>
+                <!--end::Content-->
+            </div>
+            <!--end::Sign-in Method-->
+        </div>
+    </div>
+</div>
+<!--begin:Modal - sucessful processed -->
+<div class="modal fade" id="sucesss_modal" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal header-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y pt-5 pb-15 px-lg-17">
+                <div class="d-flex align-items-end flex-column pb-10">
+                    <div class="d-flex justify-content-lg-le btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="" width="24" height="24" viewBox="0 0 24 24" fill="#990099">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="#990099" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="#990099" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                </div>
+
+                <!--begin::Options-->
+                <div data-kt-element="options">
+                    <!--begin::Notice-->
+                    <!--end::Notice-->
+                    <div class="pb-0">
+                        <!--begin::Option-->
+                        <input type="radio" class="btn-check" name="auth_option" value="apps" checked="checked" id="kt_modal_two_factor_authentication_option_1" />
+                        <label class="justify-content-center text-center p-2 d-flex align-items-center mb-5" for="kt_modal_two_factor_authentication_option_1" style="background-color:#ffffff">
+                            <!--begin::Svg Icon | path: icons/duotune/coding/cod001.svg-->
+                            <span class="svg-icon svg-icon-4x me-4 d-flex ">
+                                <img src="~/Styling/icons8-done-512.png" style="max-height:100px;max-width:100px" />
+                            </span>
+                        </label>
+                        <!--end::Option-->
+                        <!--end::Options-->
+                    </div>
+                    <h1 class="text-dark  fw-bold mb-10 justify-content-center text-center">Sucessfully Processed!</h1>
+                    <!--begin::Wrapper-->
+                    <div class="pb-10">
+                        <!--begin::Option-->
+                        <input type="radio" class="btn-check" name="auth_option" value="apps" checked="checked" id="kt_modal_two_factor_authentication_option_1" />
+                        <label class="btn btn-outline btn-outline-dashed btn-outline-danger p-7 d-flex align-items-center mb-5" for="kt_modal_two_factor_authentication_option_1" style="background-color:#32BEA6">
+                            <!--begin::Svg Icon | path: icons/duotune/coding/cod001.svg-->
+                            <span class="svg-icon svg-icon-4x me-4">
+                                <img src="~/Styling/icons8-information-96.png" style="max-height:45px;max-width:45px" />
+                            </span>
+                            <!--end::Svg Icon-->
+                            <span class="d-block fw-bold text-start">
+                                <span class="text-white fw-bold fs-6">We have sucessfully updated your password.</span>
+                            </span>
+                        </label>
+                        <!--end::Option-->
+                        <!--end::Options-->
+                    </div>
+                    <!--end::Options-->
+                </div>
+                <!--begin::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal header-->
+    </div>
+</div>
+<!--end::Modal - sucessful processed -->
+<!--begin:Modal - sucessful processed -->
+<div class="modal fade" id="wrong_modal" tabindex="-1" aria-hidden="true">
+    <!--begin::Modal header-->
+    <div class="modal-dialog modal-dialog-centered mw-650px">
+        <!--begin::Modal content-->
+        <div class="modal-content">
+            <!--begin::Modal body-->
+            <div class="modal-body scroll-y pt-5 pb-15 px-lg-17">
+                <div class="d-flex align-items-end flex-column pb-10">
+                    <div class="d-flex justify-content-lg-le btn btn-sm btn-icon btn-active-color-primary" data-bs-dismiss="modal">
+                        <!--begin::Svg Icon | path: icons/duotune/arrows/arr061.svg-->
+                        <span class="svg-icon svg-icon-1">
+                            <svg xmlns="" width="24" height="24" viewBox="0 0 24 24" fill="#990099">
+                                <rect opacity="0.5" x="6" y="17.3137" width="16" height="2" rx="1" transform="rotate(-45 6 17.3137)" fill="#990099" />
+                                <rect x="7.41422" y="6" width="16" height="2" rx="1" transform="rotate(45 7.41422 6)" fill="#990099" />
+                            </svg>
+                        </span>
+                        <!--end::Svg Icon-->
+                    </div>
+                </div>
+
+                <!--begin::Options-->
+                <div data-kt-element="options">
+                    <!--begin::Notice-->
+                    <!--end::Notice-->
+                    <div class="pb-0">
+                        <!--begin::Option-->
+                        <input type="radio" class="btn-check" name="auth_option" value="apps" checked="checked" id="kt_modal_two_factor_authentication_option_1" />
+                        <label class="justify-content-center text-center p-2 d-flex align-items-center mb-5" for="kt_modal_two_factor_authentication_option_1" style="background-color:#ffffff">
+                            <!--begin::Svg Icon | path: icons/duotune/coding/cod001.svg-->
+                            <span class="svg-icon svg-icon-4x me-4 d-flex ">
+                                <img src="~/Styling/icons8-wrong-64.png" style="max-height:100px;max-width:100px" />
+                            </span>
+                        </label>
+                        <!--end::Option-->
+                        <!--end::Options-->
+                    </div>
+                    <h1 class="text-dark  fw-bold mb-10 justify-content-center text-center">Wrong Password!</h1>
+                    <!--begin::Wrapper-->
+                    <div class="pb-10">
+                        <!--begin::Option-->
+                        <input type="radio" class="btn-check" name="auth_option" value="apps" checked="checked" id="kt_modal_two_factor_authentication_option_1" />
+                        <label class="btn btn-outline btn-outline-dashed btn-outline-danger p-7 d-flex align-items-center mb-5" for="kt_modal_two_factor_authentication_option_1" >
+                            <!--begin::Svg Icon | path: icons/duotune/coding/cod001.svg-->
+                            <span class="svg-icon svg-icon-4x me-4">
+                                <img src="~/Styling/icons8-information-96.png" style="max-height:45px;max-width:45px" />
+                            </span>
+                            <!--end::Svg Icon-->
+                            <span class="d-block fw-bold text-start">
+                                <span class="fw-bold fs-6 text-white">You have used wrong password, please entere the correct current password.</span>
+                            </span>
+                        </label>
+                        <!--end::Option-->
+                        <!--end::Options-->
+                    </div>
+                    <!--end::Options-->
+                </div>
+                <!--begin::Modal body-->
+            </div>
+            <!--end::Modal content-->
+        </div>
+        <!--end::Modal header-->
+    </div>
+</div>
+<!--end::Modal - sucessful processed -->
+<button id="successModal" data-bs-toggle="modal" data-bs-target="#sucesss_modal" class="d-none" type="button"></button>
+<button id="WrongCurrentModal" data-bs-toggle="modal" data-bs-target="#wrong_modal" class="d-none" type="button"></button>
+
+<!--end::Content-->
+<script>var hostUrl = "assets/";</script>
+<!--begin::Global Javascript Bundle(used by all pages)-->
+<script src="~/Styling/assets/plugins/global/plugins.bundle.js"></script>
+<script src="~/Styling/assets/js/scripts.bundle.js"></script>
+<script>
+    @{
+        string valueRequest = "";
+        if (Session["changePasswordStatus"]!= null) {
+            valueRequest = new security().Decrypt(Session["changePasswordStatus"].ToString());
+            Session["changePasswordStatus"] = null;
+        }
+
+    }
+    var v = '@valueRequest';
+    if (v == "cbekeys") {
+        $('#successModal').click();
+    }
+    if (v == "cbekeyb") {
+        $('#WrongCurrentModal').click();
+    }
+</script>
+<!--end::Global Javascript Bundle-->
+<!--begin::Page Vendors Javascript(used by this page)-->
+<script src="~/Styling/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+<!--end::Page Vendors Javascript-->
+<!--begin::Page Custom Javascript(used by this page)-->
+<script src="~/Styling/assets/js/custom/apps/ecommerce/catalog/categories.js"></script>
+<script src="~/Styling/assets/js/widgets.bundle.js"></script>
+<script src="~/Styling/assets/js/custom/widgets.js"></script>
+<script src="~/Styling/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+<script src="~/Styling/assets/js/custom/utilities/modals/create-app.js"></script>
+<script src="~/Styling/assets/js/custom/utilities/modals/users-search.js"></script>
+
+<script src="~/Styling/assets/plugins/global/plugins.bundle.js"></script>
+<!--end::Global Javascript Bundle-->
+<!--begin::Page Vendors Javascript(used by this page)-->
+<script src="~/Styling/assets/plugins/custom/datatables/datatables.bundle.js"></script>
+<!--end::Page Vendors Javascript-->
+<!--begin::Page Custom Javascript(used by this page)-->
+<script src="~/Styling/assets/js/custom/account/settings/signin-methods.js"></script>
+<script src="~/Styling/assets/js/custom/account/settings/profile-details.js"></script>
+<script src="~/Styling/assets/js/custom/account/settings/deactivate-account.js"></script>
+<script src="~/Styling/assets/js/widgets.bundle.js"></script>
+<script src="~/Styling/assets/js/custom/widgets.js"></script>
+<script src="~/Styling/assets/js/custom/apps/chat/chat.js"></script>
+<script src="~/Styling/assets/js/custom/utilities/modals/upgrade-plan.js"></script>
+<script src="~/Styling/assets/js/custom/utilities/modals/create-app.js"></script>
+<script src="~/Styling/assets/js/custom/utilities/modals/offer-a-deal/type.js"></script>
+<script src="~/Styling/assets/js/custom/utilities/modals/offer-a-deal/details.js"></script>
+<script src="~/Styling/assets/js/custom/utilities/modals/offer-a-deal/finance.js"></script>
+<script src="~/Styling/assets/js/custom/utilities/modals/offer-a-deal/complete.js"></script>
+<script src="~/Styling/assets/js/custom/utilities/modals/offer-a-deal/main.js"></script>
+<script src="~/Styling/assets/js/custom/utilities/modals/two-factor-authentication.js"></script>
+<script src="~/Styling/assets/js/custom/utilities/modals/users-search.js"></script>

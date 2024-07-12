@@ -1,0 +1,199 @@
+﻿
+@model FuelApplicationDashboard.Models.loginModel
+@using FuelApplicationDashboard.Controllers
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html lang="en">
+<!--begin::Head-->
+<head>
+    <base href="../../../">
+    <title>Commercial Bank of Ethiopia - The bank you can always rely on!</title>
+    <meta charset="utf-8" />
+    <meta name="description" content="CBE - Commercial Bank of Ethiopia CBEBirr Fuel Payment Dashboard" />
+    <meta name="keywords" content="CBE - Commercial Bank of Ethiopia" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="CBE - Commercial Bank of Ethiopia" />
+    <meta property="og:site_name" content="Home | CBEBirr Fuel" />
+    <link rel="shortcut icon" href="~/Styling/assets/media/logos/cbebirrlogo.png" />
+    <link rel="stylesheet" href="~/fonts/Poppins/poppins.css" />
+    <link href="~/Styling/assets/plugins/global/plugins.bundle.css" rel="stylesheet" type="text/css" />
+    <link href="~/Styling/assets/css/style.bundle.css" rel="stylesheet" type="text/css" />
+
+</head>
+<!--end::Head-->
+<!--begin::Body-->
+<body id="kt_body" class="bg-body">
+    <!--begin::Main-->
+    <!--begin::Root-->
+    <div class="d-flex flex-column flex-root">
+        <!--begin::Authentication - Sign-in -->
+        <div class="d-flex flex-column flex-lg-row flex-column-fluid">
+            <!--begin::Aside-->
+            <div class="d-flex flex-column flex-lg-row-auto w-xl-600px positon-xl-relative" style="background-color: #e6e6e6">
+                <!--begin::Wrapper-->
+                <div class="d-flex flex-column position-xl-fixed top-0 bottom-0 w-xl-600px scroll-y">
+                    <!--begin::Content-->
+                    <div class="d-flex flex-row-fluid flex-column text-center p-10 pt-lg-20">
+                        <!--begin::Logo-->
+                        <a href="~/Styling/dist/index.html" class="py-9 mb-0">
+                            <img alt="Logo" src="~/Styling/assets/media/logos/cbebirrlogoOne.png" class="h-200px" />
+                        </a>
+                        <!--end::Logo-->
+                        <!--begin::Title-->
+                        <h1 class="fw-bold fs-2qx pb-5 pb-md-5" style="color: #000000;">Welcome to Fuel App Dashboard</h1>
+                        <!--end::Title-->
+                        <!--begin::Description-->
+                        <p class="fw-bold fs-1" style="color: #000000;">
+                            Manage your fuel app attendants
+                            <br />account.
+                        </p>
+                        <!--end::Description-->
+                    </div>
+                    <!--end::Content-->
+                    <!--begin::Illustration-->
+                    <div class="d-flex flex-row-auto bgi-no-repeat bgi-position-x-center bgi-size-contain bgi-position-y-bottom min-h-100px min-h-lg-400px" style="background-image: url(../../../Styling/assets/media/logos/front.png)"></div>
+                    <!--end::Illustration-->
+                </div>
+                <!--end::Wrapper-->
+            </div>
+            <!--end::Aside-->
+            <!--begin::Body-->
+            <div class="d-flex flex-column flex-lg-row-fluid py-10">
+                <!--begin::Content-->
+                <div class="d-flex flex-center flex-column flex-column-fluid">
+                    <!--begin::Wrapper-->
+                    <div class="w-lg-500px p-10 p-lg-15 mx-auto">
+                        @using (Html.BeginForm())
+                        {
+                            @Html.AntiForgeryToken()
+
+                            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                            <!--begin::Form-->
+                            <div class=" w-100">
+                                <!--begin::Heading-->
+                                <div class="text-center mb-10">
+                                    <!--begin::Title-->
+                                    <h1 class="text-dark mb-3">Sign In to CBEBirr Fuel App Dashboard</h1>
+                                    <!--end::Title-->
+                                    <!--begin::Link-->
+                                    <div class="text-gray-400 fw-bold fs-4">
+                                        New Here?
+                                        <a href="Home/CommingSoon" class="link-primary fw-bold" style="color:#990099">Trouble loging to your account?</a>
+                                    </div>
+                                    
+                                    <!--end::Link-->
+                                </div>
+                                <!--begin::Heading-->
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-10 form-group">
+                                    @if (Request["V"] == "I")
+                                    {
+                                    <div class="text-gray-400 fw-bold fs-4 text-center">
+                                        <a href="#" class="link-primary fw-bold" style="color:red">Invalid use credentials!</a>
+                                    </div>
+                                    <br />
+                                    }
+                                    <!--begin::Label-->
+                                    <label class="form-label fs-6 fw-bold text-dark">Shortcode</label>
+                                    <!--end::Label-->
+                                    <!--begin::Input-->
+                                    @Html.EditorFor(model => model.Shortcode, new { htmlAttributes = new { @class = "form-control form-control-lg form-control-solid", @style = "min-width:290px" } })
+                                    @Html.ValidationMessageFor(model => model.Shortcode, "", new { @class = "text-danger", @style = "font-size:12px" })
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Input group-->
+                                <div class="fv-row mb-10 form-group">
+                                    <!--begin::Wrapper-->
+                                    <div class="d-flex flex-stack mb-2">
+                                        <!--begin::Label-->
+                                        <label class="form-label fw-bold text-dark fs-6 mb-0">Password</label>
+                                        <!--end::Label-->
+                                        <!--begin::Link-->
+                                        <a href="/Home/CommingSoon" class="link-primary fs-6 fw-bold" style="color:#990099">Forgot Password ?</a>
+                                        <!--end::Link-->
+                                    </div>
+                                    <!--end::Wrapper-->
+                                    <!--begin::Input-->
+                                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control form-control-lg form-control-solid", @style = "min-width:290px", @type = "password" } })
+                                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger", @style = "font-size:12px" })
+                                    <!--end::Input-->
+                                </div>
+                                <!--end::Input group-->
+                                <!--begin::Actions-->
+                                <style>
+                                    #kt_sign_in_submit:hover {
+                                        background-color: #990099 !important;
+                                    }
+
+                                    #kt_sign_in_submit:focus {
+                                        background-color: #990099 !important;
+                                    }
+                                </style>
+                                <div class="text-center">
+                                    <!--begin::Submit button-->
+                                    <button type="submit" id="kt_sign_in_submit" class="btn btn-lg btn-light-info w-100 mb-5" style="background-color:#990099">
+                                        <span class="indicator-label" style="color:white">Continue</span>
+                                        <span class="indicator-progress">
+                                            Please wait...
+                                            <span class="spinner-border spinner-border-sm align-middle ms-2"></span>
+                                        </span>
+                                    </button>
+                                    <!--end::Submit button-->
+                                    <!--begin::Separator-->
+                                    <div class="text-center text-muted text-uppercase fw-bolder mb-5">Others</div>
+                                    <!--end::Separator-->
+                                    <!--begin::Google link-->
+                                    <a href="https://play.google.com/store/apps/details?id=prod.cbe.birr&hl=en&gl=US" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
+                                        <img alt="CBEBirr Application" src="~/Styling/assets/media/logos/cbebirr.png" class="h-40px me-3" />Download CBEBirr
+                                    </a>
+                                    <!--end::Google link-->
+                                    <!--begin::Google link-->
+                                    <a href="https://play.google.com/store/apps/details?id=prod.cbe.birr.FuelPay&hl=en_US" class="btn btn-flex flex-center btn-light btn-lg w-100 mb-5">
+                                        <img alt="CBEBirr Fuel App" src="~/Styling/assets/media/logos/fuelIcon.png" class="h-35px me-3" />Download Fuel App
+                                    </a>
+                                    <!--end::Google link-->
+                                </div>
+                                <!--end::Actions-->
+                            </div>
+                            <!--end::Form-->
+
+                        }
+                    </div>
+                    <!--end::Wrapper-->
+                </div>
+                <!--end::Content-->
+                <!--begin::Footer-->
+                <div class="d-flex flex-center flex-wrap fs-6 p-5 pb-0">
+                    <!--begin::Links-->
+                    <div class="d-flex flex-center fw-bold fs-6">
+                        <a href="/Home/AboutOutside" class="text-muted text-hover-primary px-2" target="_blank">About Us</a>
+                    </div>
+                    <!--end::Links-->
+                </div>
+                <!--end::Footer-->
+            </div>
+            <!--end::Body-->
+        </div>
+        <!--end::Authentication - Sign-in-->
+    </div>
+    <!--end::Root-->
+    <!--end::Main-->
+    <!--begin::Javascript-->
+    <script>var hostUrl = "~/Styling/assets/";</script>
+    <!--begin::Global Javascript Bundle(used by all pages)-->
+    <script src="~/Styling/assets/plugins/global/plugins.bundle.js"></script>
+    <script src="~/Styling/assets/js/scripts.bundle.js"></script>
+    <!--end::Global Javascript Bundle-->
+    <!--begin::Page Custom Javascript(used by this page)-->
+    <script src="~/Styling/assets/js/custom/authentication/sign-in/general.js"></script>
+    <!--end::Page Custom Javascript-->
+    <!--end::Javascript-->
+</body>
+<!--end::Body-->
+</html>

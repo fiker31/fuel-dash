@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="FuelDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="AttendantsList">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="AttendantName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="EncryptionKey" Type="nvarchar" MaxLength="500" Nullable="false" />
+    <Property Name="Shortcode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FuelPrices">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="DIESEL" Type="decimal" Precision="14" Scale="4" Nullable="false" />
+    <Property Name="BENZEL" Type="decimal" Precision="14" Scale="4" Nullable="false" />
+    <Property Name="StartDate" Type="date" Nullable="false" />
+    <Property Name="EndDate" Type="date" Nullable="false" />
+    <Property Name="InsertDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+    <Property Name="InsertUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="UpdateUser" Type="nvarchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <EntityType Name="FuleOTP">
+    <Key>
+      <PropertyRef Name="FulePhone" />
+    </Key>
+    <Property Name="FulePhone" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="FuOTP" Type="varchar" MaxLength="10" Nullable="false" />
+    <Property Name="FuleExpTime" Type="datetime" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MerchantInfo">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="bigint" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Shortcode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Password" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="KYC" Type="nvarchar(max)" />
+    <Property Name="Status" Type="nvarchar" MaxLength="10" />
+    <Property Name="InsertDate" Type="datetime" Nullable="false" />
+    <Property Name="UpdateDate" Type="datetime" Nullable="false" />
+    <Property Name="InsertUser" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="UpdateUser" Type="nvarchar" MaxLength="10" Nullable="false" />
+  </EntityType>
+  <EntityType Name="TXN">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="uniqueidentifier" Nullable="false" />
+    <Property Name="TillCode" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Phone" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="15" Scale="2" Nullable="false" />
+    <Property Name="PlateNo" Type="nvarchar" MaxLength="20" Nullable="false" />
+    <Property Name="TransactionId" Type="nvarchar" MaxLength="100" Nullable="false" />
+    <Property Name="Status" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="OperatorName" Type="nvarchar" MaxLength="100" />
+    <Property Name="Type" Type="nvarchar" MaxLength="10" Nullable="false" />
+    <Property Name="TransactionEndFuel" Type="datetime" Nullable="false" />
+    <Property Name="InsertDate" Type="datetime" />
+    <Property Name="UpdateDate" Type="datetime" />
+    <Property Name="InsertUser" Type="nvarchar" MaxLength="10" />
+    <Property Name="UpdateUser" Type="nvarchar" MaxLength="10" />
+  </EntityType>
+  <EntityContainer Name="FuelDBModelStoreContainer">
+    <EntitySet Name="AttendantsList" EntityType="Self.AttendantsList" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FuelPrices" EntityType="Self.FuelPrices" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FuleOTP" EntityType="Self.FuleOTP" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MerchantInfo" EntityType="Self.MerchantInfo" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="TXN" EntityType="Self.TXN" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>
